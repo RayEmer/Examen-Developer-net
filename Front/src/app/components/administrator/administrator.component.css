@@ -1,0 +1,11 @@
+  .table tbody td {
+    vertical-align: middle;
+  }
+  
+  .img-thumbnail {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: 150px;
+  }

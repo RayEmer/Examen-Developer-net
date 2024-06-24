@@ -1,0 +1,93 @@
+<div class="container mt-5">
+  <h2 class="mb-4 d-inline-block">Administrador de Artículos</h2>
+  <button class="btn btn-primary float-right" (click)="openModal()">Agregar Artículo</button>
+
+  <table class="table table-bordered mt-3">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Imagen</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Tienda</th>
+        <!--<th scope="col">Acciones</th>-->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let articulo of articulos">
+        <td class="text-center align-middle">
+          <img [src]="articulo.imagenUrl" alt="Imagen" class="img-thumbnail">
+        </td>
+        <td class="align-middle">{{ articulo.descripcion }}</td>
+        <td class="align-middle">{{ articulo.precio | currency }}</td>
+        <td class="align-middle">{{ articulo.stock }}</td>
+        <td class="align-middle">{{ articulo.tienda }}
+          <button class="btn btn-success" *ngIf="!articulo.tienda" (click)="openAsignarTiendaModal(articulo)">Asignar Tienda</button></td>
+        <!--<td class="text-center align-middle">
+          <button class="btn btn-primary">Actualizar</button>
+        </td>-->
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal Agregar Artículo -->
+  <div #addArticuloModal class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar Artículo</h5>
+          <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="articuloForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="descripcion">Descripción</label>
+              <input type="text" id="descripcion" formControlName="descripcion" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="precio">Precio</label>
+              <input type="number" id="precio" formControlName="precio" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="stock">Stock</label>
+              <input type="number" id="stock" formControlName="stock" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="imagen">Imagen</label>
+              <input type="file" id="imagen" (change)="onFileSelected($event)" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!articuloForm.valid || !selectedFile">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Asignar Tienda -->
+  <div #asignarTiendaModal class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Asignar Tienda</h5>
+          <button type="button" class="close" aria-label="Close" (click)="closeAsignarTiendaModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="asignarTiendaForm" (ngSubmit)="onAsignarTiendaSubmit()">
+            <div class="form-group">
+              <label for="tienda">Tienda</label>
+              <select id="tienda" formControlName="tiendaId" class="form-control">
+                <option *ngFor="let tienda of tiendas" [value]="tienda.tiendaId">{{ tienda.sucursal }}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!asignarTiendaForm.valid">Aceptar</button>
+            <button type="button" class="btn btn-secondary" (click)="closeAsignarTiendaModal()">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

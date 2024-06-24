@@ -1,0 +1,36 @@
+INSERT INTO Clientes (Nombre, Apellidos, Direccion, Email, Password)
+VALUES ('Mario Tomás', 'Islas Castro', 'EDOMEX', 'mario.tomas.1996@gmail.com', '123456');
+
+INSERT INTO Tiendas (Sucursal, Direccion)
+VALUES 
+('Sucursal 1', 'Dirección 1'),
+('Sucursal 2', 'Dirección 2'),
+('Sucursal 3', 'Dirección 3'),
+('Sucursal 4', 'Dirección 4'),
+('Sucursal 5', 'Dirección 5');
+
+INSERT INTO Articulos (Codigo, Descripcion, Precio, Imagen, Stock)
+VALUES 
+('A001', 'Artículo 1', 100.00, 'A001.jpg', 10),
+('A002', 'Artículo 2', 150.00, 'A002.jpg', 5),
+('A003', 'Artículo 3', 200.00, 'A003.jpg', 0),
+('A004', 'Artículo 4', 250.00, 'A004.jpg', 20),
+('A005', 'Artículo 5', 300.00, 'A005.jpg', 0),
+('A006', 'Artículo 6', 350.00, 'A006.jpg', 15),
+('A007', 'Artículo 7', 400.00, 'A007.jpg', 8),
+('A008', 'Artículo 8', 450.00, 'A008.jpg', 0),
+('A009', 'Artículo 9', 500.00, 'A009.jpg', 25),
+('A010', 'Artículo 10', 550.00, 'A010.jpg', 12);
+
+INSERT INTO ArticuloTiendas (ArticuloId, TiendaId, Fecha)
+VALUES
+(1, 1, GETDATE()),
+(2, 2, GETDATE()),
+(3, 3, GETDATE()),
+(4, 4, GETDATE()),
+(5, 5, GETDATE()),
+(6, 1, GETDATE()),
+(7, 2, GETDATE()),
+(8, 3, GETDATE()),
+(9, 4, GETDATE()),
+(10, 5, GETDATE());
